@@ -63,4 +63,4 @@
 
 ### Association
 
-- belongs to :pay
+- belongs_to :item
