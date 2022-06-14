@@ -25,11 +25,11 @@
 | user            | references | null: false, foreign_key: true|
 | item_name       | string     | null: false,                  |
 | description     | text       | null: false,                  |
-| category_id     | string     | null: false,                  |
-| item_status_id  | string     | null: false,                  |
-| prefecture_id   | string     | null: false,                  |
-| shipping_cost_id| string     | null: false,                  |
-| shipping_date_id| string     | null: false,                  |
+| category_id     | integer    | null: false,                  |
+| item_status_id  | integer    | null: false,                  |
+| prefecture_id   | integer    | null: false,                  |
+| shipping_cost_id| integer    | null: false,                  |
+| shipping_date_id| integer    | null: false,                  |
 | price           | integer    | null: false,                  |
 ### Association
 
@@ -58,9 +58,9 @@
 | prefecture_id | integer    |null: false                    |
 | city          | string     |null: false                    |
 | block         | string     |null: false                    |
-| building      | string     |null: false                    |
+| building      | string     |                               |
 | phone_number  | string     |null: false                    |
 
 ### Association
 
-- belongs ro :pay
+- belongs to :pay
