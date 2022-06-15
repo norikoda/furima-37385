@@ -14,8 +14,7 @@ class User < ApplicationRecord
   validates_format_of :password, with: PASSWORD_REGEX, message: 'Include both letters and numbers'
 
   validates :nickname, presence: true
-  # @を含むこと・deviseのデフォルト実装
-  validates :email,    uniqueness: true
+  # @を含む、必須、一意性⇨deviseのデフォルト実装
   # 全角ひらがな、全角カタカナ、漢字
   validates :last_name, presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]/ }
   validates :first_name, presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]/ }
