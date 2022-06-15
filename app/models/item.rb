@@ -17,7 +17,7 @@ class Item < ApplicationRecord
     validates :condition_id
     validates :shipping_cost_id
     validates :shipping_date_id
-  end   
+  end
 
   with_options presence: true do
     validates :user
