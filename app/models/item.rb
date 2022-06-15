@@ -1,4 +1,7 @@
 class Item < ApplicationRecord
+  belongs_to :user
+  has_one_attached :image
+
   with_options presence: true do
     validates :user
     validates :name
@@ -9,5 +12,6 @@ class Item < ApplicationRecord
     validates :shipping_cost_id
     validates :prefecture_id
     validates :shipping_date_id
+    validates :image
   end
 end
