@@ -31,7 +31,7 @@ end
 
 def move_to_index
 
-  if current_user.id == @item.user_id then
+  if current_user.id == @item.user_id || @item.order.present? then
     redirect_to root_path
   end
 end
@@ -44,4 +44,5 @@ def pay_item
     currency: 'jpy'
   )
 end
+
 end
