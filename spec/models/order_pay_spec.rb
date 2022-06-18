@@ -80,6 +80,16 @@ RSpec.describe OrderPay, type: :model do
         @order_pay.valid?
         expect(@order_pay.errors.full_messages).to include("Phone number is invalid")
       end
+      it 'user_id（購入者）が空だと保存できない' do
+        @order_pay.user_id = ' '
+        @order_pay.valid?
+        expect(@order_pay.errors.full_messages).to include("User can't be blank")
+      end
+      it 'item_id（購入商品）が空だと保存できない' do
+        @order_pay.item_id = ' '
+        @order_pay.valid?
+        expect(@order_pay.errors.full_messages).to include("Item can't be blank")
+      end
     end
   end
 end
