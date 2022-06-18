@@ -10,6 +10,7 @@ class OrdersController < ApplicationController
     @order_pay = OrderPay.new(order_params)
    if @order_pay.valid?
     @order_pay.save
+    redirect_to root_path
    else 
      render :index
    end
