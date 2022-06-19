@@ -5,7 +5,7 @@ RSpec.describe OrderPay, type: :model do
     user = FactoryBot.create(:user)
     item = FactoryBot.create(:item)
     @order_pay = FactoryBot.build(:order_pay, user_id: user.id, item_id: item.id)
-    sleep 0.1 
+    sleep 0.1
   end
 
   describe '商品購入情報の保存' do
@@ -48,37 +48,37 @@ RSpec.describe OrderPay, type: :model do
       it 'postal_codeはハイフンがないと保存できない' do
         @order_pay.postal_code = '1234567'
         @order_pay.valid?
-        expect(@order_pay.errors.full_messages).to include("Postal code is invalid")
+        expect(@order_pay.errors.full_messages).to include('Postal code is invalid')
       end
       it 'postal_codeは半角英数混合では保存できない' do
         @order_pay.postal_code = '123-abcd'
         @order_pay.valid?
-        expect(@order_pay.errors.full_messages).to include("Postal code is invalid")
-      end    
+        expect(@order_pay.errors.full_messages).to include('Postal code is invalid')
+      end
       it 'postal_codeは全角では保存できない' do
         @order_pay.postal_code = '１２３-４５６７'
         @order_pay.valid?
-        expect(@order_pay.errors.full_messages).to include("Postal code is invalid")
+        expect(@order_pay.errors.full_messages).to include('Postal code is invalid')
       end
       it 'prefecture_idは選択していないと保存できない' do
         @order_pay.prefecture_id = 1
         @order_pay.valid?
-        expect(@order_pay.errors.full_messages).to include("Prefecture must be other than 1")
+        expect(@order_pay.errors.full_messages).to include('Prefecture must be other than 1')
       end
-      it 'phone_numberは12桁の数字では保存できない' do
-        @order_pay.phone_number = '090123456789'
+      it 'phone_numberは9桁以下の数字では保存できない' do
+        @order_pay.phone_number = '090123456'
         @order_pay.valid?
-        expect(@order_pay.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_pay.errors.full_messages).to include('Phone number is invalid')
       end
       it 'phone_numberは半角英数混合では保存できない' do
         @order_pay.phone_number = 'abc123456789'
         @order_pay.valid?
-        expect(@order_pay.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_pay.errors.full_messages).to include('Phone number is invalid')
       end
       it 'phone_numberは全角では保存できない' do
         @order_pay.phone_number = '０９０１２３４５６７８'
         @order_pay.valid?
-        expect(@order_pay.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_pay.errors.full_messages).to include('Phone number is invalid')
       end
       it 'user_id（購入者）が空だと保存できない' do
         @order_pay.user_id = ' '
@@ -89,6 +89,11 @@ RSpec.describe OrderPay, type: :model do
         @order_pay.item_id = ' '
         @order_pay.valid?
         expect(@order_pay.errors.full_messages).to include("Item can't be blank")
+      end
+      it 'tokenが空では保存できない' do
+        @order_pay.token = ' '
+        @order_pay.valid?
+        expect(@order_pay.errors.full_messages).to include("Token can't be blank")
       end
     end
   end
