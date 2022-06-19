@@ -28,7 +28,7 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-       redirect_to item_path
+      redirect_to item_path
     else
       render :edit
     end
@@ -38,6 +38,7 @@ class ItemsController < ApplicationController
     @item.destroy
     redirect_to root_path
   end
+
   private
 
   def item_params
@@ -46,12 +47,10 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    unless current_user.id == @item.user_id && @item.order.nil? then
-      redirect_to action: :index
-    end
+    redirect_to action: :index unless current_user.id == @item.user_id && @item.order.nil?
   end
 
   def set_item
-    @item = Item.find(params[:id]) 
+    @item = Item.find(params[:id])
   end
 end
